@@ -66,7 +66,7 @@ WSGI_APPLICATION = 'Earth.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    'default': dj_database_url.parse(os.environ.get("postgresql://earch_user:MGKiDiwHcs9RDY5JqZ4c9DxdoY3EaKsM@dpg-d7s3n2bbc2fs738ntqd0-a.oregon-postgres.render.com/earch_db"))
 }
 
 

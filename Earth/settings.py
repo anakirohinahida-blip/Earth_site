@@ -11,6 +11,11 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
+import dj_database_url
+
+import gunicorn
+
+from Earth_project import Earth
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -74,14 +79,7 @@ WSGI_APPLICATION = 'Earth.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'earth_db',
-        'USER': 'earth_user',
-        'PASSWORD': '12345678',
-        'HOST': 'localhost',
-        'PORT': '5432',
-    }
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 
@@ -127,8 +125,6 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = 'media/'
 
-MEDIA_ROOT = BASE_DIR / 'media'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-

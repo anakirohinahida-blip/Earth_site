@@ -1,0 +1,42 @@
+{% extends 'portal/base.html' %}
+{% block title %} Главная {% endblock %}
+{% load static %}
+{% block content %}
+<div class="block">
+    <form method="POST">
+        {% csrf_token %}
+        <div class="grid-2">
+            <div class="form-group">
+                <label>Логин</label>
+                {{ form.username }}
+                <small class="help-text">Не менее 6 символов</small>
+            </div>
+            <div class="form-group">
+                <label>Повторите пароль</label>
+                {{ form.password_confirm }}
+            </div>
+            <div class="form-group">
+                <label>Email</label>
+                {{ form.email }}
+            </div>
+            <div class="form-group">
+                <label>ФИО</label>
+                {{ form.full_name }}
+            </div>
+            <div class="form-group">
+                <label>Пароль</label>
+                {{ form.password }}
+            </div>
+            <div class="form-group">
+                <label>Телефон</label>
+                {{ form.phone }}
+                <p class="help-text">Формат: 8(900)123-45-67</p>
+            </div>
+        </div>
+        <button class="btn-main">Зарегистрироваться</button>
+                    <p class="auth-link">
+                Уже есть аккаунт? <a href="{% url 'register' %}" class="reg">Вход</a>
+            </p>
+    </form>
+</div>
+{% endblock %}

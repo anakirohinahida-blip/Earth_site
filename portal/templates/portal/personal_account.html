@@ -1,0 +1,45 @@
+{% extends 'portal/base.html' %}
+{% block title %} Главная {% endblock %}
+{% load static %}
+{% block content %}
+<div class="page">
+    <h2>Личный кабинет</h2>
+    <div class="block">
+        <div class="section-title">
+            <div class="section-icon">👤</div>
+            Личные данные
+        </div>
+        <div class="grid-2">
+            <p><b>ФИО:</b> {{ client.full_name }}</p>
+            <p><b>Email:</b> {{ request.user.email }}</p>
+            <p><b>Телефон:</b> {{ client.phone }}</p>
+            <p><b>Логин:</b> {{ request.user.username }}</p>
+        </div>
+    </div>
+    <div class="block">
+        <div class="section-title">
+            <div class="section-icon">📋</div>
+            Мои заявки
+        </div>
+        <table style="width:100%; margin-top:10px;">
+            <tr>
+                <th>ID</th>
+                <th>Площадь</th>
+                <th>Адрес</th>
+                <th>Статус</th>
+            </tr>
+            {% for app in applications %}
+            <tr>
+                <td>#{{ app.id }}</td>
+                <td>{{ app.plot_size }}</td>
+                <td>{{ app.address }}</td>
+                <td>{{ app.get_status_display }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        <a href="{% url 'apple' %}" class="btn-main" style="margin-top:15px; display:inline-block;">
+            Новая заявка
+        </a>
+    </div>
+</div>
+{% endblock %}

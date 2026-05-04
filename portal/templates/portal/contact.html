@@ -1,0 +1,43 @@
+{% extends 'portal/base.html' %}
+{% block title %} Контактные данные{% endblock %}
+{% load static %}
+{% block content %}
+<div class="page-container">
+    <h2>Контактные данные</h2>
+    <p class="subtitle">Свяжитесь с нами любым удобным способом</p>
+    <div class="card-grid">
+        <div class="card">
+               <div class="img-placeholder"><img src="{% static 'portal/img/suport.png' %}" class="card-img"></div>
+            <h4>Телефон</h4>
+            <p>
+                +7 (42354) 24-3-18<br>
+                +7 (42354) 24-3-28
+            </p>
+        </div>
+        <div class="card">
+              <div class="img-placeholder"><img src="{% static 'portal/img/maiil.png' %}" class="card-img"></div>
+            <h4>Электронная почта</h4>
+            <p>admingk@mail.ru</p>
+        </div>
+        <div class="card">
+              <div class="img-placeholder"><img src="{% static 'portal/img/clock.svg' %}" class="card-img"></div>
+            <h4>Режим работы</h4>
+            <p>
+                Пн–Пт: 08:00 – 17:00<br>
+                Обед: 12:00 – 13:00<br>
+                Сб–Вс: выходной
+            </p>
+        </div>
+        <div class="card">
+              <div class="img-placeholder"><img src="{% static 'portal/img/house.png' %}" class="card-img"></div>
+            <h4>Адрес</h4>
+            <p>
+                Приморский край,<br>
+                Кировский район,<br>
+                п. Горные Ключи,<br>
+                пр. Лазурный, 2
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

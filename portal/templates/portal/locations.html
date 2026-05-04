@@ -1,0 +1,48 @@
+{% extends 'portal/base.html' %}
+{% block title %} Главная {% endblock %}
+{% load static %}
+{% block content %}
+<div class="page-container">
+    <h2>Местоположение</h2>
+    <p class="subtitle">Мы находимся по адресу</p>
+    <div class="location-grid">
+        <div class="location-info">
+            <div class="card">
+                <div class="img-placeholder"><img src="{% static 'portal/img/map.png' %}" class="card-img"></div>
+                <h4>Адрес</h4>
+                <p>
+                    692743, Приморский край,<br>
+                    Кировский район,<br>
+                    п. Горные Ключи,<br>
+                    пр. Лазурный, 2
+                </p>
+            </div>
+            <div class="card">
+                <div class="img-placeholder"><img src="{% static 'portal/img/information.png' %}" class="card-img"></div>
+                <h4>Как добраться</h4>
+                <p>
+                    Можно добраться на личном или общественном транспорте.<br>
+                    Рядом остановка «Горные Ключи».
+                </p>
+            </div>
+        </div>
+        <div class="map">
+            <div id="map" style="width: 100%; height: 99%;"></div>
+        </div>
+    </div>
+</div>
+<script>
+ymaps.ready(init);
+function init() {
+    var myMap = new ymaps.Map("map", {
+        center: [45.226310, 133.504815],
+        zoom: 17
+    });
+    var myPlacemark = new ymaps.Placemark([45.226310, 133.504815], {
+        hintContent: 'Администрация',
+        balloonContent: 'Горно-Ключевское поселение'
+    });
+    myMap.geoObjects.add(myPlacemark);
+}
+</script>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends 'portal/base.html' %}
+{% block title %} Главная {% endblock %}
+{% load static %}
+{% block content %}
+<div class="page">
+    <h2>Подача заявки</h2>
+    <p class="subtitle">Заполните данные для оформления участка</p>
+    <div class="block">
+        <form method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="section-title">
+                <div class="section-icon">👤</div>
+                Личные данные
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Паспортные данные</label>
+                    {{ form.passport_data }}
+                    <small class="help-text">Формат: 1234 567890</small>
+                </div>
+            </div>
+            <div class="section-title">
+                <div class="section-icon">📍</div>
+                Информация об участке
+            </div>
+            <div class="grid-2">
+                <div class="form-group">
+                    <label>Кадастровый номер</label>
+                    {{ form.cadastral_number }}
+                </div>
+                 <div class="form-group">
+                    <label>Площадь участка</label>
+                    {{ form.plot_size }}
+                    <small class="help-text">В квадратных метрах</small>
+                </div>
+            </div>
+                <div class="form-group">
+                    <label>Адрес участка</label>
+                    {{ form.address }}
+                </div>
+
+                <div class="section-title">
+                    <div class="section-icon">📄</div>
+                    Детали заявки
+                </div>
+            <div class="grid-2">
+
+                <div class="form-group">
+                    <label>Вид приобретения</label>
+                    {{ form.payment_acquisitions }}
+                </div>
+                    <div class="form-group">
+                        <label>Тип строения</label>
+                        {{ form.building }}
+                    </div>
+            </div>
+            <div class="section-title">
+                <div class="section-icon">📎</div>
+                Документы
+            </div>
+            <div class="file-upload">
+                <input type="file" name="document" id="fileInput" hidden>
+                <label for="fileInput" class="file-label" id="dropArea">
+                    <div class="file-icon">📁</div>
+                    <p class="file-text">
+                        Перетащите файл сюда или <span>выберите</span>
+                    </p>
+                    <p class="file-subtext">PDF, JPG, PNG</p>
+                </label>
+
+                <div id="fileName" class="file-name"></div>
+            </div>
+            <div style="margin-top: 20px; display: flex; gap: 10px;">
+                <button type="reset" class="btn-light">Очистить</button>
+                <button type="submit" class="btn-main">Отправить заявку</button>
+            </div>
+        </form>
+        {% if error %}
+            <p class="error-text">{{ error }}</p>
+        {% endif %}
+    </div>
+</div>
+<script>
+    const input = document.getElementById('fileInput');
+    const fileName = document.getElementById('fileName');
+    const dropArea = document.getElementById('dropArea');
+    input.addEventListener('change', function () {
+        if (this.files.length > 0) {
+            fileName.innerText = "Файл: " + this.files[0].name;
+        }
+    });
+    dropArea.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dropArea.style.borderColor = '#43c06b';
+    });
+    dropArea.addEventListener('dragleave', () => {
+        dropArea.style.borderColor = '#cfcfcf';
+    });
+    dropArea.addEventListener('drop', (e) => {
+        e.preventDefault();
+        input.files = e.dataTransfer.files;
+        fileName.innerText = "Файл: " + input.files[0].name;
+    });
+</script>
+{% endblock %}

@@ -40,8 +40,10 @@ def profile(request):
 @login_required
 def apple(request):
     client = request.user.client
+
     if request.method == 'POST':
         form = ApplicationForm(request.POST, request.FILES)
+
         if form.is_valid():
             Application.objects.create(
                 client=client,
@@ -53,15 +55,12 @@ def apple(request):
                 address=form.cleaned_data['address'],
                 document=form.cleaned_data.get('document')
             )
-            return render(
-                request,
-                'portal/apple.html',
-                {
-                    'success': 'Заявка успешно отправлена'
-                }
-            )
+
+            return redirect('apple')
+
     else:
         form = ApplicationForm()
+
     return render(
         request,
         'portal/apple.html',

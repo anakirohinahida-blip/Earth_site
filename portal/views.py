@@ -7,7 +7,10 @@ from portal.models import Application,Client
 
 
 def main(request):
-    return HttpResponse("SITE WORKS")
+    return render(
+        request,
+        'portal/main.html'
+    )
 
 def locations(request):
     return render(request, 'portal/locations.html')

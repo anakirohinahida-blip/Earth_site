@@ -40,38 +40,28 @@ def profile(request):
 @login_required
 def apple(request):
     client = request.user.client
-
-    if Application.objects.filter(
-        client=client
-    ).exists():
-        return render(
-            request,
-            'portal/apple.html',
-            {
-                'error': 'Bы ухе подали заявку здесь'
-            }
-        )
-
     if request.method == 'POST':
-        form = ApplicationForm(request.POST,  request.FILES)
+        form = ApplicationForm(request.POST, request.FILES)
         if form.is_valid():
             Application.objects.create(
-                    client=client,
-                    plot_size=form.cleaned_data['plot_size'],
-                    building=form.cleaned_data['building'],
-                    payment_acquisitions=form.cleaned_data['payment_acquisitions'],
-                    cadastral_number=form.cleaned_data['cadastral_number'],
-                    passport_data=form.cleaned_data['passport_data'],
-                    address=form.cleaned_data['address'],
-                    document=form.cleaned_data.get('document')
-                )
+                client=client,
+                plot_size=form.cleaned_data['plot_size'],
+                building=form.cleaned_data['building'],
+                payment_acquisitions=form.cleaned_data['payment_acquisitions'],
+                cadastral_number=form.cleaned_data['cadastral_number'],
+                passport_data=form.cleaned_data['passport_data'],
+                address=form.cleaned_data['address'],
+                document=form.cleaned_data.get('document')
+            )
             return render(
                 request,
-                'portal/apple.html'
+                'portal/apple.html',
+                {
+                    'success': 'Заявка успешно отправлена'
+                }
             )
     else:
         form = ApplicationForm()
-
     return render(
         request,
         'portal/apple.html',

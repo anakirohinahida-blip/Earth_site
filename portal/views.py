@@ -6,8 +6,6 @@ from portal.form import ApplicationForm, RegistrationForm, LoginForm
 from portal.models import Application,Client
 
 
-from django.http import HttpResponse
-
 def main(request):
     return HttpResponse("SITE WORKS")
 

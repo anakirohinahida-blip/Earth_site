@@ -9,7 +9,7 @@
         <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <div class="section-title">
-                <div class="section-icon">👤</div>
+                <div class="section-icon"></div>
                 Личные данные
             </div>
             <div class="grid-2">
@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="section-title">
-                <div class="section-icon">📍</div>
+                <div class="section-icon"></div>
                 Информация об участке
             </div>
             <div class="grid-2">
@@ -40,7 +40,7 @@
                 </div>
 
                 <div class="section-title">
-                    <div class="section-icon">📄</div>
+                    <div class="section-icon"></div>
                     Детали заявки
                 </div>
             <div class="grid-2">
@@ -55,12 +55,12 @@
                     </div>
             </div>
             <div class="section-title">
-                <div class="section-icon">📎</div>
+                <div class="section-icon"></div>
                 Документы
             </div>
             <div class="file-upload">
-                <input type="file" name="document" id="fileInput" hidden>
-                <label for="fileInput" class="file-label" id="dropArea">
+                {{ form.document }}
+                <label for="id_document" class="file-label" id="dropArea">
                     <div class="file-icon">📁</div>
                     <p class="file-text">
                         Перетащите файл сюда или <span>выберите</span>
@@ -81,7 +81,7 @@
     </div>
 </div>
 <script>
-    const input = document.getElementById('fileInput');
+    const input = document.getElementById('id_document');
     const fileName = document.getElementById('fileName');
     const dropArea = document.getElementById('dropArea');
     input.addEventListener('change', function () {

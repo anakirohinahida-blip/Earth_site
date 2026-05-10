@@ -61,6 +61,8 @@ def apple(request):
     else:
         form = ApplicationForm()
 
+    print(form.errors)
+
     return render(
         request,
         'portal/apple.html',

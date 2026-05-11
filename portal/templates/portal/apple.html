@@ -9,7 +9,6 @@
 
     <div class="block">
 
-        <!-- ВЫВОД ОБЩИХ ОШИБОК -->
         {% if form.errors %}
             <div class="error-text">
                 {{ form.errors }}
@@ -88,25 +87,28 @@
                 <div class="section-icon">📎</div>
                 Документы
             </div>
-
             <div class="file-upload">
-
-                <!-- DJANGO FILE INPUT -->
                 {{ form.document }}
                 {{ form.document.errors }}
 
                 <label for="id_document" class="file-label" id="dropArea">
-                    <div class="file-icon">📁</div>
+                    <div class="upload-content">
+                        <div class="file-icon">📁</div>
 
-                    <p class="file-text">
-                        Перетащите файл сюда или <span>выберите</span>
-                    </p>
+                        <p class="file-text">
+                            Перетащите файл сюда или <span>выберите</span>
+                        </p>
 
-                    <p class="file-subtext">
-                        PDF, JPG, PNG
-                    </p>
+                        <p class="file-subtext">
+                            PDF, JPG, PNG
+                        </p>
+
+                        <button type="button" class="upload-btn">
+                            Выбрать файл
+                        </button>
+                    </div>
                 </label>
-
+            
                 <div id="fileName" class="file-name"></div>
             </div>
 
